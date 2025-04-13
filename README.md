@@ -24,10 +24,6 @@ CREATE USER votre_utilisateur WITH PASSWORD 'votre_mot_de_passe';
 ```
 
 ```SQL
-CREATE USER votre_utilisateur WITH PASSWORD 'votre_mot_de_passe';
-```
-
-```SQL
 GRANT ALL PRIVILEGES ON DATABASE votre_base_de_donnees TO votre_utilisateur;
 ```
 
