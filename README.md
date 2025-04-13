@@ -118,3 +118,47 @@ ALTER TABLE "Post" ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES "User
 | `\dx`           | Liste les extensions installées            |
 | `\d`            | Liste tous les objets dans le schéma actif |
 | `\d nom_objet`  | Description d’un objet                     |
+
+## 🏷️ **Types de données PostgreSQL**
+
+| **Catégorie**                        | **Type**                | **Description**                                                                                                                |
+| ------------------------------------ | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| **Types numériques avancés**         | `bigint`                | Un entier plus grand que `int`.                                                                                                |
+|                                      | `serial` et `bigserial` | Types d'entiers auto-incrémentés, souvent utilisés pour les clés primaires.                                                    |
+|                                      | `numeric` ou `decimal`  | Pour les calculs avec une grande précision, souvent utilisé pour les montants d'argent.                                        |
+|                                      | `double precision`      | Un nombre à virgule flottante de précision double.                                                                             |
+|                                      | `money`                 | Un type pour représenter des valeurs monétaires avec une précision fixe.                                                       |
+| **Types de texte et de chaînes**     | `text`                  | Texte de longueur variable sans limite spécifique.                                                                             |
+|                                      | `varchar(n)`            | Chaîne de caractères avec une longueur maximale définie.                                                                       |
+|                                      | `char(n)`               | Chaîne de caractères de longueur fixe (souvent utilisé pour des codes de taille fixe).                                         |
+| **Types de date et d'heure**         | `date`                  | Représente une date sans heure.                                                                                                |
+|                                      | `timestamp`             | Représente une date et une heure sans fuseau horaire.                                                                          |
+|                                      | `timestamptz`           | Représente une date et une heure avec un fuseau horaire.                                                                       |
+|                                      | `time`                  | Représente uniquement l'heure sans date.                                                                                       |
+|                                      | `timetz`                | Représente l'heure avec un fuseau horaire.                                                                                     |
+|                                      | `interval`              | Représente un intervalle de temps (par exemple, `2 days 3 hours`).                                                             |
+| **Types booléens**                   | `boolean`               | Représente une valeur `true`, `false` ou `NULL`.                                                                               |
+| **Types de tableaux**                | `array`                 | Permet de stocker plusieurs éléments du même type dans une seule colonne.                                                      |
+| **Types de géométrie et géospatial** | `point`                 | Représente un point dans un plan à deux dimensions.                                                                            |
+|                                      | `line`                  | Représente une ligne dans un plan.                                                                                             |
+|                                      | `lseg`                  | Représente un segment de ligne.                                                                                                |
+|                                      | `box`                   | Représente un rectangle dans un plan.                                                                                          |
+|                                      | `path`                  | Représente un chemin, qui peut être ouvert ou fermé.                                                                           |
+|                                      | `polygon`               | Représente un polygone.                                                                                                        |
+|                                      | `circle`                | Représente un cercle.                                                                                                          |
+| **Types JSON**                       | `json`                  | Représente des données JSON sous forme de texte brut.                                                                          |
+|                                      | `jsonb`                 | Représente des données JSON sous forme binaire, permettant des recherches plus rapides.                                        |
+| **Types de données de réseau**       | `cidr`                  | Représente un réseau IPv4 ou IPv6.                                                                                             |
+|                                      | `inet`                  | Représente une adresse IP, avec ou sans réseau.                                                                                |
+|                                      | `macaddr`               | Représente une adresse MAC.                                                                                                    |
+| **Types UUID**                       | `uuid`                  | Représente un identifiant unique universel (UUID).                                                                             |
+| **Types de données composites**      | `composite types`       | Permet de définir des types de données complexes en combinant plusieurs types simples.                                         |
+| **Types de données HSTORE**          | `hstore`                | Un type clé-valeur permettant de stocker des données semi-structurées, comme des paires clé-valeur.                            |
+| **Types de données RANGE**           | `int4range`             | Un intervalle de valeurs d'entiers.                                                                                            |
+|                                      | `int8range`             | Un intervalle de valeurs d'entiers longs.                                                                                      |
+|                                      | `numrange`              | Un intervalle de valeurs numériques.                                                                                           |
+|                                      | `tsrange`               | Un intervalle de valeurs de timestamps sans fuseau horaire.                                                                    |
+|                                      | `tstzrange`             | Un intervalle de timestamps avec fuseau horaire.                                                                               |
+|                                      | `daterange`             | Un intervalle de valeurs de dates.                                                                                             |
+| **Types Enum**                       | `enum`                  | Permet de définir un type énuméré avec un ensemble limité de valeurs possibles (par exemple, `enum color {red, green, blue}`). |
+| **Types Large Object**               | `bytea`                 | Permet de stocker des données binaires de taille variable (par exemple, des fichiers, des images).                             |
