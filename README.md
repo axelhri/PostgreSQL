@@ -97,3 +97,24 @@ _ou_
 ```SQL
 ALTER TABLE "Post" ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES "User"(user_id);
 ```
+
+## 🐘 **Commandes PSQL**
+
+| Commande        | Description                                |
+| --------------- | ------------------------------------------ |
+| `\l` ou `\list` | Liste les bases de données                 |
+| `\c nom_base`   | Se connecter à une base                    |
+| `\conninfo`     | Informations de connexion actuelles        |
+| `\dt`           | Liste les tables                           |
+| `\dt+`          | Liste les tables avec détails              |
+| `\dv`           | Liste les vues                             |
+| `\d nom_table`  | Description d’une table                    |
+| `\d+ nom_table` | Détails étendus sur une table              |
+| `\di`           | Liste les index                            |
+| `\ds`           | Liste les séquences                        |
+| `\df`           | Liste les fonctions                        |
+| `\dn`           | Liste les schémas                          |
+| `\du`           | Liste les rôles utilisateurs               |
+| `\dx`           | Liste les extensions installées            |
+| `\d`            | Liste tous les objets dans le schéma actif |
+| `\d nom_objet`  | Description d’un objet                     |
