@@ -36,6 +36,10 @@ GRANT ALL PRIVILEGES ON DATABASE votre_base_de_donnees TO votre_utilisateur;
 **Création de table :**
 
 ```SQL
+CREATE DATABASE nom_de_bdd;
+```
+
+```SQL
 CREATE TABLE "User"(
    user_id UUID PRIMARY KEY,
    user_name VARCHAR(20) NOT NULL UNIQUE,
