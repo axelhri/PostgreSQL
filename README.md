@@ -166,3 +166,23 @@ ALTER TABLE "Post" ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES "User
 |                                      | `daterange`             | Un intervalle de valeurs de dates.                                                                                             |
 | **Types Enum**                       | `enum`                  | Permet de définir un type énuméré avec un ensemble limité de valeurs possibles (par exemple, `enum color {red, green, blue}`). |
 | **Types Large Object**               | `bytea`                 | Permet de stocker des données binaires de taille variable (par exemple, des fichiers, des images).                             |
+
+# **pgAdmin**
+
+## 📥 Installation
+
+```bash
+curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/pgadmin-keyring.gpg
+```
+
+```bash
+echo "deb [signed-by=/usr/share/keyrings/pgadmin-keyring.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/jammy pgadmin4 main" | sudo tee /etc/apt/sources.list.d/pgadmin4.list
+```
+
+```bash
+sudo apt update
+```
+
+```bash
+sudo apt install pgadmin4-desktop
+```
