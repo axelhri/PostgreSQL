@@ -19,6 +19,10 @@ psql
 
 ## 🔧 Configuration
 
+```bash
+sudo -u postgres psql
+```
+
 ```SQL
 CREATE USER votre_utilisateur WITH PASSWORD 'votre_mot_de_passe';
 ```
