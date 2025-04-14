@@ -1,4 +1,4 @@
-# ![PostgreSQL](postgresql.png) **PostgreSQL**
+# ![PostgreSQL](./images/postgresql.png) **PostgreSQL**
 
 ## 📥 Installation
 
@@ -31,7 +31,7 @@ CREATE USER votre_utilisateur WITH PASSWORD 'votre_mot_de_passe';
 GRANT ALL PRIVILEGES ON DATABASE votre_base_de_donnees TO votre_utilisateur;
 ```
 
-## ![SQL](sql.png) **Commandes SQL**
+## ![SQL](./images/sql.png) **Commandes SQL**
 
 **Création de table :**
 
@@ -186,3 +186,19 @@ sudo apt update
 ```bash
 sudo apt install pgadmin4-desktop
 ```
+
+## ⚙️ Setup PgAdmin4
+
+- Lors de l'ouverture de PgAdmin4, vous devrez créer un serveur, cliquez donc sur `Add New Server`
+
+![Exemple](./images/exemple-add-new-server.png)
+
+- Lorsque vous avez cliquer sur ce bouton, une fenếtre s'ouvira où il vous sera demander de rentrer un nim de serveur :
+
+![Fenêtre-de-configuration](./images/screenshot-add-new-server.png)
+
+- Entrez le nom du serveur que vous voulez. _(ex: test)_
+
+- A la suite de ça, vous aurez besoin de configurer la connection via l'onglet **"Connection"** situé à droite de **"General"** vu plus haut dans le screenshot. A l'intérieur de celui-ci, vous devrez rentrer le host name _(ex : localhost)_, ainsi que mettre en **_username_** le nom que vous vous êtes attribué dans **psql** et remplir le password que vous avez aussi précedemment créer.
+
+![Configuration-Connection-Server](./images/screen-connection-screen.png)
