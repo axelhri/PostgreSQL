@@ -33,6 +33,28 @@ GRANT ALL PRIVILEGES ON DATABASE votre_base_de_donnees TO votre_utilisateur;
 
 ## ![SQL](./images/sql.png) **Commandes SQL**
 
+**Création de rôle**
+
+```SQL
+CREATE ROLE username WITH LOGIN PASSWORD 'ton_mot_de_passe' SUPERUSER CREATEDB;
+```
+
+_A la suite de cela, si vous voulez vérifier que vous avez votre rôle bien attribuer, executer dans psql_ `\du`
+
+**Modification d'un rôle**
+
+```SQL
+ALTER ROLE username WITH CREATEROLE;
+```
+
+_ou_
+
+```SQL
+ALTER ROLE username WITH REPLICATION;
+```
+
+_Il y a pleins d'autres rôle disponible dans psql_ (voir documentation officielle : [Différents rôles psql](https://docs.postgresql.fr/10/sql-createrole.html))
+
 **Création de table :**
 
 ```SQL
