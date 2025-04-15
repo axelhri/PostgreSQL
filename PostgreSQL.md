@@ -31,7 +31,7 @@ CREATE USER votre_utilisateur WITH PASSWORD 'votre_mot_de_passe';
 GRANT ALL PRIVILEGES ON DATABASE votre_base_de_donnees TO votre_utilisateur;
 ```
 
-## ![SQL](./images/sql.png) **Commandes SQL**
+## **Commandes SQL**
 
 **Création de table :**
 
