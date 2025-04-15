@@ -19,13 +19,25 @@ psql
 
 ## 🔧 Configuration
 
+Se connecter a l'utilisateur de base **postgres** :
+
 ```bash
 sudo -u postgres psql
 ```
 
+Créer un utilisateur :
+
 ```SQL
 CREATE USER votre_utilisateur WITH PASSWORD 'votre_mot_de_passe';
 ```
+
+Se connecter a une base de données avec un utilisateur :
+
+```SQL
+psql -u utilisateur -d base-de-données
+```
+
+Donner toutes les permissions à un utilisateur dans une base de données :
 
 ```SQL
 GRANT ALL PRIVILEGES ON DATABASE votre_base_de_donnees TO votre_utilisateur;
