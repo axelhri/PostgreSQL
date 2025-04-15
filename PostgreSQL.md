@@ -142,6 +142,8 @@ sudo apt install pgadmin4-desktop
 - La coloration syntaxique.
 - Une interface plus conviviale que `psql`.
 
+![sss](./images/pgcli.gif)
+
 ---
 
 ## ⚙️ Installation de PgCLI avec `pipx`
