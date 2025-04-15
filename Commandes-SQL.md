@@ -1,4 +1,4 @@
-## ![SQL](./images/sql.png) **Commandes SQL**
+## **Commandes SQL**
 
 **Création de rôle**
 
