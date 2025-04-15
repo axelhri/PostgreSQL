@@ -1,4 +1,4 @@
-# ![PostgreSQL](./images/postgresql.png) **PostgreSQL**
+# **PostgreSQL**
 
 ## 📥 Installation
 
