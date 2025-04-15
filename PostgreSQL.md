@@ -209,3 +209,41 @@ Si vous avez configurer déjà vos paramètres sinon via
 ```zsh
 pgcli -h <host> -U <username> -d <base_de_données>
 ```
+
+## Problème de multiligne via le bouton F3 sur Linux
+
+Il a été rapporté à plusieurs reprises que le multiligne dans pgcli ne fonctionnait pas correctement, notamment via la touche **F3**. Voici une alternative simple pour écrire de longues requêtes SQL sans passer par `nano` ou un autre éditeur en ligne de commande, en utilisant directement votre **IDE** préféré, comme **VS Code**.
+
+- Ouvrez le fichier de configuration de votre terminal (ici pour **zsh**) :
+
+```zsh
+nano ~/.zshrc
+```
+
+- Ajoutez la ligne suivante à la fin du fichier :
+
+```zsh
+export EDITOR="code -w"
+```
+
+- Rechargez la configuration du terminal :
+
+```zsh
+source ~/.zshrc
+```
+
+- Une fois cette configuration en place, vous pouvez utiliser la commande suivante dans pgcli :
+
+```SQL
+\e
+```
+
+- Cela ouvrira automatiquement VS Code. Vous pourrez alors rédiger votre requête **SQL** _(comme la création d'une table, par exemple)_. Dès que vous enregistrez et fermez le fichier dans votre IDE, votre requête apparaîtra dans **pgcli**.
+
+Édition de la requête dans **VS Code** :
+
+![exemple](./images/editor-query.png)
+
+Exécution de la requête dans **pgcli** après fermeture de l’éditeur :
+
+![exemple](./images/query-pgcli.png)
