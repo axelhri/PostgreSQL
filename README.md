@@ -193,7 +193,7 @@ sudo apt install pgadmin4-desktop
 
 ![Exemple](./images/exemple-add-new-server.png)
 
-- Lorsque vous avez cliquer sur ce bouton, une fenếtre s'ouvira où il vous sera demander de rentrer un nim de serveur :
+- Lorsque vous avez cliquer sur ce bouton, une fenếtre s'ouvrira où il vous sera demander de rentrer un nom de serveur :
 
 ![Fenêtre-de-configuration](./images/screenshot-add-new-server.png)
 
