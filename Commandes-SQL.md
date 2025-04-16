@@ -93,3 +93,69 @@ _ou_
 ```SQL
 ALTER TABLE "Post" ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES "User"(user_id);
 ```
+
+**Suppression d'une base de données**
+
+```SQL
+DROP DATABASE nom_de_bdd;
+```
+
+**Ajouter une colonne**
+
+```SQL
+ALTER TABLE "User" ADD COLUMN age INT;
+```
+
+**Supprimer une colonne**
+
+```SQL
+ALTER TABLE "User" DROP COLUMN age;
+```
+
+**Utilisation de BETWEEN pour une plage de valeurs**
+
+```SQL
+SELECT * FROM "User" WHERE age BETWEEN 18 AND 30;
+```
+
+**Utiliser LIKE pour une recherche partielle**
+
+```SQL
+SELECT * FROM "User" WHERE user_name LIKE 'ax%';
+```
+
+_ici 'ax%' cible les noms qui commenceront par ax_
+
+**Ordre croissant (ASC) ou décroissant (DESC)**
+
+```SQL
+SELECT * FROM "User" ORDER BY user_name ASC;
+```
+
+```SQL
+SELECT * FROM "User" ORDER BY age DESC;
+```
+
+**Limiter les résultats**
+
+```SQL
+SELECT * FROM "User" LIMIT 5;
+```
+
+**Ignorer les premiers résultats**
+
+```SQL
+SELECT * FROM "User" OFFSET 5 LIMIT 5;
+```
+
+**Supprimer une ligne spécifique**
+
+```SQL
+DELETE FROM "User" WHERE user_name = 'axel';
+```
+
+**Supprimer toutes les lignes d'une table**
+
+```SQL
+DELETE FROM "User";
+```
