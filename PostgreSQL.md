@@ -247,3 +247,135 @@ source ~/.zshrc
 Exécution de la requête dans **pgcli** après fermeture de l’éditeur :
 
 ![exemple](./images/query-pgcli.png)
+
+## Gestion des sauvegardes
+
+Il est essentiel de faire des sauvegardes régulières de sa base de données. Voici comment procéder avec **pg_dump**.
+
+Ouvrez votre terminal et exécutez la commande suivante :
+
+```zsh
+pg_dump -U <username> -d <nom_bdd> -F c -f <nom_de_votre_fichier>.backup
+```
+
+Si vous souhaitez restaurer votre base de données, que ce soit sur une autre machine ou dans une nouvelle base, vous devrez d'abord en créer une :
+
+```zsh
+createdb -U <username> <nom_bdd>
+```
+
+Ensuite, vous pouvez lancer la restauration avec :
+
+```zsh
+pg_restore -U <username> -d <nom_bdd> -c <nom_de_votre_fichier>.backup
+```
+
+## Formats de sauvegarde avec pg_dump
+
+| Format | Option | Description                                                                    |
+| ------ | ------ | ------------------------------------------------------------------------------ |
+| plain  | -F p   | Un fichier **.sql** contenant toutes les commandes SQL pour recréer la BDD     |
+| custom | -F c   | Format compressé et personnalisable. Utilisable uniquement avec **pg_restore** |
+| plain  | -F d   | Sauvegarde en plusieurs fichiers dans un dossier                               |
+| plain  | -F t   | Archive **.tar** utilisable avec **pg_restore**                                |
+
+Les restaurations peuvent différer en fonction de comment vous avez sauvegarder, comme suit :
+
+- Si vous avez utilisé **-F c**, **-F d** ou **-F t** :
+
+```zsh
+pg_restore -U <username> -d <nom_bdd> -c <nom_de_votre_fichier>.backup
+```
+
+- Si vous avez utilisé **plain** :
+
+```zsh
+psql -U <username> -d <nom_bdd> -f <nom_de_votre_fichier>.sql
+```
+
+## Les sauvegardes partielles et complètes
+
+### Sauvegarde complète (FULL)
+
+```zsh
+pg_dump -U <username> -d <nom_bdd> -F c -f <nom_de_votre_fichier>.backup
+```
+
+### Sauvegarde partielle
+
+#### Une seule table
+
+```zsh
+pg_dump -U <username> -d <nom_bdd> -F c -t <nom_de_la_table> -f <nom_de_votre_fichier>.backup
+```
+
+#### Plusieurs tables
+
+```zsh
+pg_dump -U <username> -d <nom_bdd> -F c -t <nom_de_la_table_1> <nom_de_la_table_2> -f <nom_de_votre_fichier>.backup
+```
+
+#### Schéma uniquement (sans données)
+
+```zsh
+pg_dump -U <username> -d <nom_bdd> --schema-only -f <nom_de_votre_fichier>.sql
+```
+
+#### Données uniquement (sans structure)
+
+```zsh
+pg_dump -U <username> -d <nom_bdd> --data-only -f <nom_de_votre_fichier>.sql
+```
+
+## Options utiles
+
+| **Option**            | **Description**                                                                                         |
+| --------------------- | ------------------------------------------------------------------------------------------------------- |
+| **-c** ou **--clean** | Supprime les objets existants avant de les recréer                                                      |
+| **--create**          | Inclut la création de la base de données                                                                |
+| **-v**                | Mode verbeux (affiche plus d'infos pendant l’exécution)                                                 |
+| **-n <schema>**       | Sauvegarde d’un schéma spécifique                                                                       |
+| **--no-owner**        | Ne pas inclure les instructions de changement de propriétaire (utile pour restaurer avec un autre user) |
+
+_Exemple : `pg_dump -U <username> -d <nom_bdd> -F c -c --create -v -f <nom_de_votre_fichier>.backup`_
+
+✅ Options utilisées :
+
+- -F c → format custom
+- -c → supprime les objets existants
+- --create → inclut la création de la base
+- -v → mode verbeux
+- -f → nom du fichier de sauvegarde
+
+## Planification des sauvegardes
+
+1. Sur **Linux/macOS** : `cron`
+
+Créez une tâche cron avec la commande suivante :
+
+```zsh
+crontab -e
+```
+
+Et ajoutez une ligne comme :
+
+```zsh
+0 2 * * * pg_dump -U <username> -d <nom_bdd> -F c -f /chemin/vers/backup/<nom_bdd>$(date +\%F).backup
+```
+
+- Cela exécutera une sauvegarde chaque jour à 2h du matin.
+- `$(date +%F)` génère un fichier avec la date : `kekevoyages_2025-04-16.backup`
+
+2. Sur **Windows** : **Planificateur de tâches**
+
+- Ouvrez le **Planificateur de tâches**
+- Créez une **nouvelle tâche**
+- Définisez :
+  - **Déclencheur** -> ex : "tous les jours à 2h"
+  - **Action** -> lancer un script `.bat`ou `.ps1`comme :
+
+```bat
+@echo off
+set DATE=%DATE:~6,4%-%DATE:~3,2%-%DATE:~0,2%
+pg_dump -U <username> -d <nom_bdd> -F c -f "C:\sauvegardes\<nom_bdd>_%DATE%.backup"
+```
