@@ -252,19 +252,19 @@ Exécution de la requête dans **pgcli** après fermeture de l’éditeur :
 
 Il est essentiel de faire des sauvegardes régulières de sa base de données. Voici comment procéder avec **pg_dump**.
 
-Ouvrez votre terminal et exécutez la commande suivante :
+- Ouvrez votre terminal et exécutez la commande suivante :
 
 ```zsh
 pg_dump -U <username> -d <nom_bdd> -F c -f <nom_de_votre_fichier>.backup
 ```
 
-Si vous souhaitez restaurer votre base de données, que ce soit sur une autre machine ou dans une nouvelle base, vous devrez d'abord en créer une :
+- Si vous souhaitez restaurer votre base de données, que ce soit sur une autre machine ou dans une nouvelle base, vous devrez d'abord en créer une :
 
 ```zsh
 createdb -U <username> <nom_bdd>
 ```
 
-Ensuite, vous pouvez lancer la restauration avec :
+- Ensuite, vous pouvez lancer la restauration avec :
 
 ```zsh
 pg_restore -U <username> -d <nom_bdd> -c <nom_de_votre_fichier>.backup
@@ -351,13 +351,13 @@ _Exemple : `pg_dump -U <username> -d <nom_bdd> -F c -c --create -v -f <nom_de_vo
 
 🕒 1. Sur **Linux/macOS** : `cron`
 
-Créez une tâche cron avec la commande suivante :
+- Créez une tâche cron avec la commande suivante :
 
 ```zsh
 crontab -e
 ```
 
-Et ajoutez une ligne comme :
+- Et ajoutez une ligne comme :
 
 ```zsh
 0 2 * * * pg_dump -U <username> -d <nom_bdd> -F c -f /chemin/vers/backup/<nom_bdd>$(date +\%F).backup
