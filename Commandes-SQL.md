@@ -159,3 +159,92 @@ DELETE FROM "User" WHERE user_name = 'axel';
 ```SQL
 DELETE FROM "User";
 ```
+
+**Compter le nombre d'éléments**
+
+```SQL
+SELECT COUNT(*) FROM "User";
+```
+
+**Valeur maximum/minimum**
+
+```SQL
+SELECT MAX(age) FROM "User";
+```
+
+```SQL
+SELECT MIN(age) FROM "User";
+```
+
+**Calcul de la moyenne**
+
+```SQL
+SELECT AVG(age) FROM "User";
+```
+
+**Calcul de la somme**
+
+```SQL
+SELECT SUM(age) FROM "User";
+```
+
+**Groupement des données**
+
+```SQL
+SELECT city, COUNT(*) FROM "User";
+GROUP BY city;
+```
+
+**Groupement avec condition**
+
+```SQL
+SELECT city, COUNT(*) FROM "User";
+GROUP BY city;
+HAVING COUNT(*) > 2;
+```
+
+## Jointures
+
+**Jointure entre deux tables**
+
+_exemple entre les deux tables "User" et "Post"_
+
+```SQL
+SELECT "User".user_name, "Post".post_title
+FROM "User"
+JOIN "Post" ON "User".user_id = "Post".user_id;
+```
+
+**LEFT JOIN**
+
+```SQL
+SELECT "User".user_name, "Post".post_title
+FROM "User"
+LEFT JOIN "Post" ON "User".user_id = "Post".user_id;
+```
+
+## Alias
+
+**Création d'alias**
+
+```SQL
+SELECT user_name AS nom_utilisateur FROM "User";
+```
+
+## Contraintes
+
+**Contrainte CHECK**
+
+```SQL
+ALTER TABLE "User"
+ADD CONSTRAINT age_check CHECK (age BETWEEN 18 AND 99);
+```
+
+## Dates
+
+**Requêter par date**
+
+```SQL
+SELECT * FROM "User"
+WHERE created_at >= '2024-01-01' AND created_at <= '2024-12-31';
+```
