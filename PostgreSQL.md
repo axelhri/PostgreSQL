@@ -250,7 +250,7 @@ Exécution de la requête dans **pgcli** après fermeture de l’éditeur :
 
 ## 💾 Gestion des sauvegardes
 
-Il est essentiel de faire des sauvegardes régulières de sa base de données. Voici comment procéder avec **pg_dump**.
+Il est essentiel d’effectuer des sauvegardes régulières de sa base de données. Voici comment procéder avec **pg_dump**.
 
 - Ouvrez votre terminal et exécutez la commande suivante :
 
@@ -272,14 +272,14 @@ pg_restore -U <username> -d <nom_bdd> -c <nom_de_votre_fichier>.backup
 
 ## 🔁 Formats de sauvegarde avec pg_dump
 
-| Format | Option | Description                                                                    |
-| ------ | ------ | ------------------------------------------------------------------------------ |
-| plain  | -F p   | Un fichier **.sql** contenant toutes les commandes SQL pour recréer la BDD     |
-| custom | -F c   | Format compressé et personnalisable. Utilisable uniquement avec **pg_restore** |
-| plain  | -F d   | Sauvegarde en plusieurs fichiers dans un dossier                               |
-| plain  | -F t   | Archive **.tar** utilisable avec **pg_restore**                                |
+| Format    | Option | Description                                                                    |
+| --------- | ------ | ------------------------------------------------------------------------------ |
+| plain     | -F p   | Un fichier **.sql** contenant toutes les commandes SQL pour recréer la BDD     |
+| custom    | -F c   | Format compressé et personnalisable. Utilisable uniquement avec **pg_restore** |
+| directory | -F d   | Sauvegarde en plusieurs fichiers dans un dossier                               |
+| tar       | -F t   | Archive **.tar** utilisable avec **pg_restore**                                |
 
-Les restaurations peuvent différer en fonction de comment vous avez sauvegarder, comme suit :
+Les restaurations peuvent différer selon la méthode de sauvegarde utilisée. :
 
 - Si vous avez utilisé **-F c**, **-F d** ou **-F t** :
 
@@ -370,9 +370,9 @@ crontab -e
 
 - Ouvrez le **Planificateur de tâches**
 - Créez une **nouvelle tâche**
-- Définisez :
+- Définissez :
   - **Déclencheur** -> ex : "tous les jours à 2h"
-  - **Action** -> lancer un script `.bat`ou `.ps1`comme :
+  - **Action** -> lancer un script `.bat` ou `.ps1`comme :
 
 ```bat
 @echo off
