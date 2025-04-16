@@ -248,7 +248,7 @@ Exécution de la requête dans **pgcli** après fermeture de l’éditeur :
 
 ![exemple](./images/query-pgcli.png)
 
-## Gestion des sauvegardes
+## 💾 Gestion des sauvegardes
 
 Il est essentiel de faire des sauvegardes régulières de sa base de données. Voici comment procéder avec **pg_dump**.
 
@@ -270,7 +270,7 @@ Ensuite, vous pouvez lancer la restauration avec :
 pg_restore -U <username> -d <nom_bdd> -c <nom_de_votre_fichier>.backup
 ```
 
-## Formats de sauvegarde avec pg_dump
+## 🔁 Formats de sauvegarde avec pg_dump
 
 | Format | Option | Description                                                                    |
 | ------ | ------ | ------------------------------------------------------------------------------ |
@@ -295,13 +295,13 @@ psql -U <username> -d <nom_bdd> -f <nom_de_votre_fichier>.sql
 
 ## Les sauvegardes partielles et complètes
 
-### Sauvegarde complète (FULL)
+### 💾 Sauvegarde complète (FULL)
 
 ```zsh
 pg_dump -U <username> -d <nom_bdd> -F c -f <nom_de_votre_fichier>.backup
 ```
 
-### Sauvegarde partielle
+### ✂️ Sauvegarde partielle
 
 #### Une seule table
 
@@ -327,7 +327,7 @@ pg_dump -U <username> -d <nom_bdd> --schema-only -f <nom_de_votre_fichier>.sql
 pg_dump -U <username> -d <nom_bdd> --data-only -f <nom_de_votre_fichier>.sql
 ```
 
-## Options utiles
+## 🎯 Options utiles
 
 | **Option**            | **Description**                                                                                         |
 | --------------------- | ------------------------------------------------------------------------------------------------------- |
@@ -349,7 +349,7 @@ _Exemple : `pg_dump -U <username> -d <nom_bdd> -F c -c --create -v -f <nom_de_vo
 
 ## Planification des sauvegardes
 
-1. Sur **Linux/macOS** : `cron`
+🕒 1. Sur **Linux/macOS** : `cron`
 
 Créez une tâche cron avec la commande suivante :
 
@@ -366,7 +366,7 @@ Et ajoutez une ligne comme :
 - Cela exécutera une sauvegarde chaque jour à 2h du matin.
 - `$(date +%F)` génère un fichier avec la date : `kekevoyages_2025-04-16.backup`
 
-2. Sur **Windows** : **Planificateur de tâches**
+🖥️ 2. Sur **Windows** : **Planificateur de tâches**
 
 - Ouvrez le **Planificateur de tâches**
 - Créez une **nouvelle tâche**
