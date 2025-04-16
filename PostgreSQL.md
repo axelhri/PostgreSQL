@@ -364,7 +364,7 @@ crontab -e
 ```
 
 - Cela exécutera une sauvegarde chaque jour à 2h du matin.
-- `$(date +%F)` génère un fichier avec la date : `kekevoyages_2025-04-16.backup`
+- `$(date +%F)` génère un fichier avec la date : `<nom_bdd>_2025-04-16.backup`
 
 🖥️ 2. Sur **Windows** : **Planificateur de tâches**
 
