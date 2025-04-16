@@ -210,7 +210,7 @@ Si vous avez configurer déjà vos paramètres sinon via
 pgcli -h <host> -U <username> -d <base_de_données>
 ```
 
-## Problème de multiligne via le bouton F3 sur Linux
+## ⚠️ Problème de multiligne via le bouton F3 sur Linux
 
 Il a été rapporté à plusieurs reprises que le multiligne dans pgcli ne fonctionnait pas correctement, notamment via la touche **F3**. Voici une alternative simple pour écrire de longues requêtes SQL sans passer par `nano` ou un autre éditeur en ligne de commande, en utilisant directement votre **IDE** préféré, comme **VS Code**.
 
