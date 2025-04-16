@@ -1,4 +1,6 @@
-## **Commandes SQL**
+# Commandes SQL
+
+## Création & gestion des rôles
 
 **Création de rôle**
 
@@ -22,13 +24,16 @@ ALTER ROLE username WITH REPLICATION;
 
 _Il y a pleins d'autres rôle disponible dans psql_ (voir documentation officielle : [Différents rôles psql](https://docs.postgresql.fr/10/sql-createrole.html))
 
+## Gestion des bases de données
+
 **Création de base de données :**
 
 ```SQL
 CREATE DATABASE nom_de_bdd;
 ```
 
-s
+## Gestion des tables
+
 **Création de table :**
 
 ```SQL
@@ -39,6 +44,8 @@ CREATE TABLE "User"(
    user_password VARCHAR(128) NOT NULL
 );
 ```
+
+## Insertion de données
 
 **Insérer dans une table :**
 
@@ -160,6 +167,8 @@ DELETE FROM "User" WHERE user_name = 'axel';
 DELETE FROM "User";
 ```
 
+## Agrégats & calculs
+
 **Compter le nombre d'éléments**
 
 ```SQL
@@ -248,3 +257,22 @@ ADD CONSTRAINT age_check CHECK (age BETWEEN 18 AND 99);
 SELECT * FROM "User"
 WHERE created_at >= '2024-01-01' AND created_at <= '2024-12-31';
 ```
+
+## Tri multiple
+
+**Trier plusieurs tables**
+
+```SQL
+SELECT * FROM "User"
+ORDER BY age DESC, user_name ASC;
+```
+
+## Tri d'une valeur unique
+
+**Récupérer chaque ville unique depuis la table User**
+
+```SQL
+SELECT DISTINCT city FROM "User";
+```
+
+_cela retournera une seule fois chaque valeur de city, même si plusieurs utilisateurs vivent dans la même ville_
