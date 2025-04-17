@@ -93,3 +93,9 @@ _ou_
 ```SQL
 ALTER TABLE "Post" ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES "User"(user_id);
 ```
+
+**Création d'index :**
+
+```SQL
+CREATE INDEX index_name ON table_name (column_name);
+```
