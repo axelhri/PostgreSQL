@@ -410,3 +410,23 @@ pg_dump -U <username> -d <nom_bdd> -F c -f "C:\sauvegardes\<nom_bdd>_%DATE%.back
 | **CREATE**     | bases, schémas           | Créer des objets (tables, fonctions, etc.) |
 | **CONNECT**    | bases                    | Se connecter à une base                    |
 | **TEMP**       | bases                    | Créer des tables temporaires               |
+
+### Accorder ou retirer des privilèges
+
+**✅ Accorder un privilège** :
+
+```SQL
+GRANT SELECT, INSERT ON ma_table TO mon_utilisateur;
+```
+
+**❌ Retirer un privilège**
+
+```SQL
+REVOKE INSERT ON ma_table FROM mon_utilisateur;
+```
+
+**Accorder tous les privilèges sur une table**
+
+```SQL
+GRANT ALL PRIVILEGES ON ma_table TO mon_utilisateur;
+```
