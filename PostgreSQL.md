@@ -391,3 +391,22 @@ crontab -e
 set DATE=%DATE:~6,4%-%DATE:~3,2%-%DATE:~0,2%
 pg_dump -U <username> -d <nom_bdd> -F c -f "C:\sauvegardes\<nom_bdd>_%DATE%.backup"
 ```
+
+## 🔐 Privilège
+
+### Les principaux privilèges qu'on peut accorder :
+
+| **Privilège**  | **Objet(s) concerné(s)** | **Description**                            |
+| -------------- | ------------------------ | ------------------------------------------ |
+| **SELECT**     | tables,vues              | Lire les données                           |
+| **INSERT**     | tables                   | Insérer des données                        |
+| **UPDATE**     | tables,colonnes          | Modifier des données                       |
+| **DELETE**     | tables                   | Supprimer des données                      |
+| **TRUNCATE**   | tables                   | Vider une table                            |
+| **REFERENCES** | tables,colonnes          | Créer des clés étrangères                  |
+| **TRIGGER**    | tables                   | Créer des triggers                         |
+| **USAGE**      | séquence,schémas         | Utiliser l'objet (pas l'exécuter)          |
+| **EXECUTE**    | fonctions                | Exécuter une fonction                      |
+| **CREATE**     | bases, schémas           | Créer des objets (tables, fonctions, etc.) |
+| **CONNECT**    | bases                    | Se connecter à une base                    |
+| **TEMP**       | bases                    | Créer des tables temporaires               |
