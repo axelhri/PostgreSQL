@@ -99,3 +99,22 @@ ALTER TABLE "Post" ADD CONSTRAINT user_id FOREIGN KEY (user_id) REFERENCES "User
 ```SQL
 CREATE INDEX index_name ON table_name (column_name);
 ```
+
+**INNER JOIN :**
+
+```SQL
+SELECT * FROM customer INNER JOIN transactions ON customer.customer_id = customers.customer_id;
+```
+
+**JOIN :**
+
+```SQL
+SELECT * FROM customer LEFT JOIN transactions ON customer.customer_id = transactions.customer_id;
+```
+
+Types de join :
+
+- INNER JOIN
+- LEFT JOIN
+- RIGHT JOIN
+- FULL JOIN
