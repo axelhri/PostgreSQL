@@ -430,3 +430,28 @@ REVOKE INSERT ON ma_table FROM mon_utilisateur;
 ```SQL
 GRANT ALL PRIVILEGES ON ma_table TO mon_utilisateur;
 ```
+
+### Voir les privilèges actuels
+
+**Pour voir les droits sur une table**
+
+```SQL
+\d+ ma_table
+```
+
+**Ou pour voir tout ce qu'un utilisateur a**
+
+```SQL
+SELECT * FROM information_schema.role_table_grants
+WHERE grantee = 'mon_utilisateur';
+```
+
+### 💡 Le rôle PUBLIC
+
+**PUBLIC** = tous les utilisateurs, même ceux non explicitement listés.
+
+Exemple :
+
+```SQL
+REVOKE ALL ON ma_table FROM PUBLIC;
+```
