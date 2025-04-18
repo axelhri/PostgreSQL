@@ -43,6 +43,10 @@ Donner toutes les permissions à un utilisateur dans une base de données :
 GRANT ALL PRIVILEGES ON DATABASE votre_base_de_donnees TO votre_utilisateur;
 ```
 
+## **Commandes SQL**
+
+**Création de table :**
+
 ```SQL
 REVOKE ALL PRIVILEGES ON DATABASE base_de_données FROM nom_utilisateur;
 ```
