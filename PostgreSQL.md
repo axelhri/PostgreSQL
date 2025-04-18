@@ -391,3 +391,67 @@ crontab -e
 set DATE=%DATE:~6,4%-%DATE:~3,2%-%DATE:~0,2%
 pg_dump -U <username> -d <nom_bdd> -F c -f "C:\sauvegardes\<nom_bdd>_%DATE%.backup"
 ```
+
+## 🔐 Privilège
+
+### Les principaux privilèges qu'on peut accorder :
+
+| **Privilège**  | **Objet(s) concerné(s)** | **Description**                            |
+| -------------- | ------------------------ | ------------------------------------------ |
+| **SELECT**     | tables,vues              | Lire les données                           |
+| **INSERT**     | tables                   | Insérer des données                        |
+| **UPDATE**     | tables,colonnes          | Modifier des données                       |
+| **DELETE**     | tables                   | Supprimer des données                      |
+| **TRUNCATE**   | tables                   | Vider une table                            |
+| **REFERENCES** | tables,colonnes          | Créer des clés étrangères                  |
+| **TRIGGER**    | tables                   | Créer des triggers                         |
+| **USAGE**      | séquence,schémas         | Utiliser l'objet (pas l'exécuter)          |
+| **EXECUTE**    | fonctions                | Exécuter une fonction                      |
+| **CREATE**     | bases, schémas           | Créer des objets (tables, fonctions, etc.) |
+| **CONNECT**    | bases                    | Se connecter à une base                    |
+| **TEMP**       | bases                    | Créer des tables temporaires               |
+
+### Accorder ou retirer des privilèges
+
+**✅ Accorder un privilège** :
+
+```SQL
+GRANT SELECT, INSERT ON ma_table TO mon_utilisateur;
+```
+
+**❌ Retirer un privilège**
+
+```SQL
+REVOKE INSERT ON ma_table FROM mon_utilisateur;
+```
+
+**Accorder tous les privilèges sur une table**
+
+```SQL
+GRANT ALL PRIVILEGES ON ma_table TO mon_utilisateur;
+```
+
+### Voir les privilèges actuels
+
+**Pour voir les droits sur une table**
+
+```SQL
+\d+ ma_table
+```
+
+**Ou pour voir tout ce qu'un utilisateur a**
+
+```SQL
+SELECT * FROM information_schema.role_table_grants
+WHERE grantee = 'mon_utilisateur';
+```
+
+### 💡 Le rôle PUBLIC
+
+**PUBLIC** = tous les utilisateurs, même ceux non explicitement listés.
+
+Exemple :
+
+```SQL
+REVOKE ALL ON ma_table FROM PUBLIC;
+```
