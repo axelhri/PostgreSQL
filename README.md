@@ -34,7 +34,5 @@
 
 - **[Commandes SQL](Commandes-SQL.md)**
 
-- **[Sauvegarde](PostgreSQL.md#-gestion-des-sauvegardes)**
-
 - **[Ressources](/ressources)**
   - [Mockaroo](/ressources/mockaroo.md)
