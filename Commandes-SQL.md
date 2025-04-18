@@ -59,6 +59,17 @@ VALUES (
 );
 ```
 
+**Copier certaines données dans une autre table**
+
+```SQL
+INSERT INTO archived_customers (id, name, birthdate)
+SELECT id, name, birthdate
+FROM customers
+WHERE status = 'inactive'
+```
+
+_Ici, on copie les clients inactifs vers une table d'archivage_
+
 **Vérifier les éléments dans une table :**
 
 ```SQL
@@ -301,3 +312,96 @@ SELECT DISTINCT city FROM "User";
 ```
 
 _cela retournera une seule fois chaque valeur de city, même si plusieurs utilisateurs vivent dans la même ville_
+
+## Filtre d'attributs
+
+**Compter le nombre de personnes qui a exactement les mêmes valeurs**
+
+_exemple : nombre de personnes qui ont la même date de naissance_
+
+```SQL
+SELECT customer_birth FROM customer GROUP BY customer_birth HAVING COUNT(*) > 1
+```
+
+Cette requête renverra les dates de naissance pour lesquelles il y a **plus d'une personne** _(c'est-à-dire des dates partagées par plusieurs individus)_. Si aucune date de naissance n'est partagée, la requête retournera un résultat **vide**. De plus, si le **COUNT** est supérieur à 2, mais qu'il y a **uniquement** 2 personnes avec la même date de naissance, la requête retournera également un résultat **vide**.
+
+**Retrouver quelles sont les personnes qui ont les mêmes date de naissance**
+
+```SQL
+SELECT * FROM customer WHERE customer_birth IN (SELECT customer_birth FROM customer GROUP BY customer_birth HAVING COUNT(*) > 1)
+```
+
+## Mise à jour
+
+**Mise à jour simple**
+
+```SQL
+UPDATE customer
+SET name = 'Jean Dupont'
+WHERE id = 1
+```
+
+**Avec conditions WHERE**
+
+```SQL
+UPDATE customer
+SET status = 'inactive'
+WHERE last_login < '2023-01-01'
+```
+
+**Avec jointures**
+
+```SQL
+UPDATE customer
+SET email = e.new_email
+FROM new_emails e
+WHERE customer.id = e.customer_id
+```
+
+## Suppression
+
+⚠️ **ATTENTION**, sans `WHERE` **TOUT est supprimé**. Très dangereux en cas d'oubli !
+
+**Suppression simple**
+
+```SQL
+DELETE FROM customer
+WHERE id = 5
+```
+
+**Avec condition WHERE**
+
+```SQL
+DELETE FROM customer
+WHERE last_login < '2022-01-01'
+```
+
+**Avec jointures**
+
+```SQL
+DELETE FROM customer
+USING blacklist
+WHERE customer.email = blacklist.email
+```
+
+✅ `USING` = l'équivalent de `JOIN` pour les requêtes `DELETE`
+
+**TRUNCATE en PostgreSQL**
+
+Différence avec `DELETE`
+
+| **DELETE**                         | **TRUNCATE**                         |
+| ---------------------------------- | ------------------------------------ |
+| Peut cibler des lignes précises    | Supprime **toutes les lignes**       |
+| Peut être conditionnel (**WHERE**) | Pas de **WHERE**, tout est supprimé  |
+| Déclenche les **triggers**         | Ne déclenche **pas** les triggers    |
+| Plus lent, ligne par ligne         | Très rapide (suppression en masse)   |
+| Peut être rollbacké                | Oui, si utilisé dans une transaction |
+
+**Exemple de TRUNCATE**
+
+```SQL
+TRUNCATE TABLE customer
+```
+
+➡️ Supprime **tout le contenu** de la table `customer`
