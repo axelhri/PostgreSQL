@@ -386,3 +386,11 @@ Différence avec `DELETE`
 | Déclenche les **triggers**         | Ne déclenche **pas** les triggers    |
 | Plus lent, ligne par ligne         | Très rapide (suppression en masse)   |
 | Peut être rollbacké                | Oui, si utilisé dans une transaction |
+
+**Exemple de TRUNCATE**
+
+```SQL
+TRUNCATE TABLE customer
+```
+
+➡️ Supprime **tout le contenu** de la table `customer`
