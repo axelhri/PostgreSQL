@@ -125,7 +125,7 @@ Types de join :
 - LEFT JOIN
 - RIGHT JOIN
 - FULL JOIN
-=======
+
 **Suppression d'une base de données**
 
 ```SQL
