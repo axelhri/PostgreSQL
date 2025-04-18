@@ -59,6 +59,17 @@ VALUES (
 );
 ```
 
+**Copier certaines données dans une autre table**
+
+```SQL
+INSERT INTO archived_customers (id, name, birthdate)
+SELECT id, name, birthdate
+FROM customers
+WHERE status = 'inactive'
+```
+
+_Ici, on copie les clients inactifs vers une table d'archivage_
+
 **Vérifier les éléments dans une table :**
 
 ```SQL
