@@ -301,3 +301,21 @@ SELECT DISTINCT city FROM "User";
 ```
 
 _cela retournera une seule fois chaque valeur de city, même si plusieurs utilisateurs vivent dans la même ville_
+
+## Filtre d'attributs
+
+**Compter le nombre de personnes qui a exactement les mêmes valeurs**
+
+_exemple : nombre de personnes qui ont la même date de naissance_
+
+```SQL
+SELECT customer_birth FROM customer GROUP BY customer_birth HAVING COUNT(*) > 1
+```
+
+Cette requête renverra les dates de naissance pour lesquelles il y a **plus d'une personne** _(c'est-à-dire des dates partagées par plusieurs individus)_. Si aucune date de naissance n'est partagée, la requête retournera un résultat **vide**. De plus, si le **COUNT** est supérieur à 2, mais qu'il y a **uniquement** 2 personnes avec la même date de naissance, la requête retournera également un résultat **vide**.
+
+**Retrouver quelles sont les personnes qui ont les mêmes date de naissance**
+
+```SQL
+SELECT * FROM customer WHERE customer_birth IN (SELECT customer_birth FROM customer GROUP BY customer_birth HAVING COUNT(*) > 1)
+```
