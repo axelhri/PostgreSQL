@@ -15,5 +15,5 @@ Un bouton **GENERATE DATA** nous permettra de télécharger les données génér
 Pour insérer le script dans la base de données il faut utiliser cette commande dans le terminal :
 
 ```bash
-psql -u nom_utilisateur -d nom_bdd > customer.sql
+psql -U nom_utilisateur -d nom_bdd -f nom_fichier
 ```
