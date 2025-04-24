@@ -460,15 +460,15 @@ Exemple :
 REVOKE ALL ON ma_table FROM PUBLIC;
 ```
 
-### Se connecter avec plusieurs utilisateurs sur une base de données PostrgreSQL en local
+### Se connecter avec plusieurs utilisateurs à une base de données PostgreSQL en local
 
-La première étape est de créer la database :
+La première étape est de créer la base de données :
 
 ```SQL
 CREATE DATABASE table_test
 ```
 
-Ensuite pour créer les utilisateurs il vous faudra un utilisateur qui a le rôle SUPERADMIN. A la suite de ça, dès que vous êtes authentifié, vous pourrez créer les user qui auront accès à cette base de données.
+Ensuite, pour créer les utilisateurs il vous faudra un utilisateur qui a le rôle SUPERUSER. A la suite de ça, dès que vous êtes authentifiés, vous pourrez créer les utilisateurs qui auront accès à cette base de données.
 
 _exemple_ :
 
@@ -477,11 +477,11 @@ CREATE USER alice WITH PASSWORD 'alicepass';
 CREATE USER bob WITH PASSWORD 'bobpass';
 ```
 
-Ensuite il faudra leurs donner des accès, ainsi que des privilèges :
+Ensuite il faudra leur donner des accès, ainsi que des privilèges :
 
 ```SQL
 GRANT CONNECT ON DATABASE movie_test TO alice, bob;
-\c table_test  -- change la connexion à la base
+\c table_test  -- permet de se connecter à la base
 GRANT USAGE ON SCHEMA public TO alice, bob;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO alice, bob;
 ```
@@ -498,7 +498,7 @@ CREATE TABLE films (
 );
 ```
 
-Ensuite vous aurez besoin de modifier les types d'authentification comme suit :
+Ensuite il faudra modifier les types d'authentification comme suit :
 
 ```ZSH
 sudo nano /etc/postgresql/<version>/main/pg_hba.conf
@@ -516,8 +516,8 @@ _Screenshot de l'authentification après modification_:
 
 ![Screenshot de l'authentification après modification](./images/type-dauthentification-de-apres-modif.png)
 
-🔁 peer = auth UNIX
-🔐 md5 = auth par mot de passe
+🔁 peer = authentification via l’utilisateur UNIX
+🔐 md5 = authentification par mot de passe (chiffré)
 
 Ensuite il faudra redémarrer le service de postgresql :
 
@@ -530,3 +530,61 @@ Ensuite il faudra juste vous connecter :
 ```zsh
 psql -U john -d movie_test
 ```
+
+### Se connecter avec plusieurs utilisateurs à une base de données PostgreSQL à distance
+
+#### 🔁 Rendre une base PostgreSQL accessible de l’extérieur
+
+##### ✅ 1. Modifier le fichier postgresql.conf
+
+```zsh
+sudo nano /etc/postgresql/<version>/main/postgresql.conf
+```
+
+Voici le fichier de base :
+
+![Exemple fichier PostgreSQL](./images/fichier-postgresql-non-modifie.png)
+
+Nous allons donc le décommenter en enlevant le # devant et mettre "\*" pour autorisé toutes les connexions TCP/IP ou alors entrez une adresse spécifique.
+
+![Exemple fichier PostgreSQL](./images/fichier-postgre-modifier.png)
+
+A la suite de cela, vérifiez votre ip via cette commande :
+
+```zsh
+ip a | grep inet
+```
+
+Cela vous donneras votre adresse une inet, ex : `inet 10.2.0.00/27`
+
+A la suite de cela, on devra ouvrir le fichier **pg_hba.conf** comme suit :
+
+```zsh
+sudo nano /etc/postgresql/<version>/main/pg_hba.conf
+```
+
+Dans ce fichier vous ajouterez à la toute fin l'adresse de la machine distante :
+
+```zsh
+host    all             all             10.2.0.0/24             md5
+```
+
+Ensuite, que ce soit sur la machine distante ou locale, veillez à bien ouvrir le port lié au serveur de PostgreSQL, exemple :
+
+```zsh
+sudo ufw allow 5432
+```
+
+Ensuite, quand cela est fait, vous devrez redémarrer le service de postgresql :
+
+```zsh
+sudo systemctl restart postgresql
+```
+
+Et enfin :
+
+```zsh
+psql -h <ip> -U <user> -d <db>
+```
+
+_L'adresse ip concerne l'adresse ip de la machine qui heberge la base de données_
