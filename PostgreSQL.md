@@ -360,7 +360,7 @@ crontab -e
 - Et ajoutez une ligne comme :
 
 ```zsh
-0 2 * * * pg_dump -U <username> -d <nom_bdd> -F c -f /chemin/vers/backup/<nom_bdd>$(date +\%F).backup
+0 2 * * * /bin/bash -c '/usr/bin/pg_dump -U <username> -d <base_de_données> -F c -f /chemin/vers/backup/<base_de_données>_$(date +\%F).backup'
 ```
 
 - Cela exécutera une sauvegarde chaque jour à 2h du matin.
