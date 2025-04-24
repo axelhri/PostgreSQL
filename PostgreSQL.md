@@ -459,3 +459,74 @@ Exemple :
 ```SQL
 REVOKE ALL ON ma_table FROM PUBLIC;
 ```
+
+### Se connecter avec plusieurs utilisateurs sur une base de données PostrgreSQL en local
+
+La première étape est de créer la database :
+
+```SQL
+CREATE DATABASE table_test
+```
+
+Ensuite pour créer les utilisateurs il vous faudra un utilisateur qui a le rôle SUPERADMIN. A la suite de ça, dès que vous êtes authentifié, vous pourrez créer les user qui auront accès à cette base de données.
+
+_exemple_ :
+
+```SQL
+CREATE USER alice WITH PASSWORD 'alicepass';
+CREATE USER bob WITH PASSWORD 'bobpass';
+```
+
+Ensuite il faudra leurs donner des accès, ainsi que des privilèges :
+
+```SQL
+GRANT CONNECT ON DATABASE movie_test TO alice, bob;
+\c table_test  -- change la connexion à la base
+GRANT USAGE ON SCHEMA public TO alice, bob;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO alice, bob;
+```
+
+Ensuite connectez vous avec le superutilisateur pour créer les tables.
+
+_exemple_ :
+
+```SQL
+CREATE TABLE films (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(100),
+    release_year INT
+);
+```
+
+Ensuite vous aurez besoin de modifier les types d'authentification comme suit :
+
+```ZSH
+sudo nano /etc/postgresql/<version>/main/pg_hba.conf
+```
+
+_Screenshot de l'authentification de base_:
+
+<div>
+
+![Screenshot de l'authentification de base](./images/type-dauthentification-de-base.png)
+
+</div>
+
+_Screenshot de l'authentification après modification_:
+
+![Screenshot de l'authentification après modification](./images/type-dauthentification-de-apres-modif.png)
+
+🔁 peer = auth UNIX
+🔐 md5 = auth par mot de passe
+
+Ensuite il faudra redémarrer le service de postgresql :
+
+```zsh
+sudo systemctl restart postgresql
+```
+
+Ensuite il faudra juste vous connecter :
+
+```zsh
+psql -U john -d movie_test
+```
