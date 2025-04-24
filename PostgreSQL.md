@@ -363,6 +363,14 @@ crontab -e
 0 2 * * * /bin/bash -c '/usr/bin/pg_dump -U <username> -d <base_de_données> -F c -f /chemin/vers/backup/<base_de_données>_$(date +\%F).backup'
 ```
 
+Avec :
+
+0 = minute
+2 = heure
+`*` = jour du mois
+`*` = mois
+`*` = jour de la semaine
+
 - Cela exécutera une sauvegarde chaque jour à 2h du matin.
 - `$(date +%F)` génère un fichier avec la date : `<nom_bdd>_2025-04-16.backup`
 
