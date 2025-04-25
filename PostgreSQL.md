@@ -485,7 +485,7 @@ GRANT INSERT ON ALL TABLES IN SCHEMA public TO user1, user2;
 GRANT UPDATE ON ALL TABLES IN SCHEMA public TO user1, user2;
 GRANT DELETE ON ALL TABLES IN SCHEMA public TO user1, user2;
 -- ou en plus rapide--
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES TO user1, user2;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO user1, user2;
 ```
 
 Ensuite connectez vous avec le superutilisateur pour créer les tables.
