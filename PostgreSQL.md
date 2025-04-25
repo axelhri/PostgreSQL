@@ -480,10 +480,12 @@ CREATE USER bob WITH PASSWORD 'bobpass';
 Ensuite il faudra leur donner des accès, ainsi que des privilèges :
 
 ```SQL
-GRANT CONNECT ON DATABASE movie_test TO alice, bob;
-\c table_test  -- permet de se connecter à la base
-GRANT USAGE ON SCHEMA public TO alice, bob;
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO alice, bob;
+GRANT SELECT ON ALL TABLES IN SCHEMA public TO user1 , user2;
+GRANT INSERT ON ALL TABLES IN SCHEMA public TO user1, user2;
+GRANT UPDATE ON ALL TABLES IN SCHEMA public TO user1, user2;
+GRANT DELETE ON ALL TABLES IN SCHEMA public TO user1, user2;
+-- ou en plus rapide--
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES TO user1, user2;
 ```
 
 Ensuite connectez vous avec le superutilisateur pour créer les tables.
