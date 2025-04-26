@@ -43,3 +43,38 @@ $$ LANGUAGE plpgsql;
 ```SQL
 SELECT * FROM get_director_movie('uuid_du_realisateur');
 ```
+
+## Procédure
+
+Une procédure PostgreSQL est similaire à une fonction, mais elle ne retourne pas de valeur. Elle permet d'exécuter un ensemble d'instructions SQL ou PL/pgSQL pour réaliser des actions comme des mises à jour ou des manipulations de données sans renvoyer de résultat. Elle est utilisée principalement pour des opérations administratives ou des traitements complexes.
+
+### Créer
+
+```SQL
+CREATE OR REPLACE PROCEDURE supprimer_utilisateur(utilisateur_id INT)
+AS $$
+BEGIN
+    DELETE FROM utilisateurs WHERE id = utilisateur_id;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+`CREATE OR REPLACE PROCEDURE` : Crée une nouvelle procédure appelée supprimer_utilisateur, ou la remplace si elle existe déjà.
+
+`supprimer_utilisateur` : Nom de la procédure.
+
+`(utilisateur_id INT)` : Nom de la colonne est son type.
+
+`$$` : Délimiteur pour indiquer le début du corps de la fonction.
+
+`BEGIN` : Début du bloc d'instructions.
+
+`END` : Fin du bloc BEGIN...END.
+
+`$$ LANGUAGE plpgsql;` : LANGUAGE plpgsql indique que la fonction est écrite en langage procédural PostgreSQL (PL/pgSQL).
+
+### Executer
+
+```SQL
+CALL supprimer_utilisateur(5);
+```
