@@ -20,7 +20,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-`CREATE OR REPLACE FUNCTION` : Crée une nouvelle fonction appelée get_director_movie, ou la remplace si elle existe déjà.
+`CREATE OR REPLACE FUNCTION` : Crée une nouvelle fonction ou la remplace si elle existe déjà.
 
 `get_director_movie` : Nom de la fonction.
 
@@ -59,7 +59,7 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-`CREATE OR REPLACE PROCEDURE` : Crée une nouvelle procédure appelée supprimer_utilisateur, ou la remplace si elle existe déjà.
+`CREATE OR REPLACE PROCEDURE` : Crée une nouvelle procédure ou la remplace si elle existe déjà.
 
 `supprimer_utilisateur` : Nom de la procédure.
 
