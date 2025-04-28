@@ -301,6 +301,12 @@ psql -U <username> -d <nom_bdd> -f <nom_de_votre_fichier>.sql
 pg_dump -U <username> -d <nom_bdd> -F c -f <nom_de_votre_fichier>.backup
 ```
 
+_Si serveur à distance :_
+
+```zsh
+pg_dump -h <adresse_ip_de_la_database> -U <username> -d <nom_bdd> -F c -f <nom_de_votre_fichier>.backup
+```
+
 ### ✂️ Sauvegarde partielle
 
 #### Une seule table
